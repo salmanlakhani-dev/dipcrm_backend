@@ -51,9 +51,9 @@ router.put("/:id", auth, async (req, res) => {
   let orderReport = await OrderReport.findById(req.params.id);
   if (!orderReport)
     return res.status(404).send("The given report id was not found");
-
+  console.log(req.body);
   orderReport.purchaseDate = req.body.purchaseDate;
-  if (req.body.liveDate) {
+  if (req.body.liveDate && req.body.liveDate instanceof Date) {
     orderReport.liveDate = req.body.liveDate;
   }
   orderReport.sales = req.body.sales;
