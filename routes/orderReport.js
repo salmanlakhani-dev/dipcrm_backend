@@ -53,7 +53,9 @@ router.put("/:id", auth, async (req, res) => {
     return res.status(404).send("The given report id was not found");
 
   orderReport.purchaseDate = req.body.purchaseDate;
-  orderReport.liveDate = req.body.liveDate;
+  if (req.body.liveDate) {
+    orderReport.liveDate = req.body.liveDate;
+  }
   orderReport.sales = req.body.sales;
   orderReport.profit = req.body.profit;
   orderReport.currentStock = req.body.currentStock;
